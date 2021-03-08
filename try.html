@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./css/bootstrap.min.css"> -->
+    <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+    <div id="alert" class="text-center"></div>
+    <!-- <h1>Success</h1> -->
+    <nav class="navbar navbar-expand-sm bg-light">
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:3000/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a id="hide" class="nav-link" href="#">try</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:3000/home">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:3000/logout">Logout</a>
+            </li>
+        </ul>
+
+    </nav>
+    <h1 class="text-center">Welcome to Try Page!..</h1>
+    <!-- <h1><a href="http://localhost:3000/logout">LogOut</a></h1> -->
+    <!-- <script src="./dist/js/jquery-3.3.1.min.js"></script> -->
+    <!-- <script src="./index2.js"></script> -->
+
+    <!-- <script src="./js/jquery-3.3.1.min.js"></script>
+    <script src="./js/popper.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script> -->
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
+
+    <!-- Latest compiled JavaScript -->
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script>
+        $.ajax({
+            url: 'http://localhost:3000/flash',
+            success: function (res) {
+
+                console.log(res);
+                const myDiv = document.querySelector('#alert');
+                const message = document.createElement('P');
+                if (res.mess.length != 0) {
+                    message.classList.add(`alert-${res.mess[0].type}`, "p-3")
+                    message.textContent = `${res.mess[0].message}`;
+                    myDiv.appendChild(message);
+                    setTimeout(function () {
+                        myDiv.removeChild(myDiv.firstChild);
+                    }, 3000);
+                }
+
+
+
+
+            },
+            error: function (err) {
+                // if (err) throw err;
+                console.log(error);
+            }
+        })
+    </script>
+</body>
+
+</html>
